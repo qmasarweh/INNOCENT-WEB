@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innocent Elue - Professional CV</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for a cleaner, more professional look */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Very light blue-gray background */
+            line-height: 1.6;
+            min-height: 100vh; /* Ensure body takes at least full viewport height */
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 1200px; /* Max width for content */
+            flex-grow: 1; /* Allow content to grow and push footer down */
+        }
+        .section-heading {
+            /* Deeper blue border for section headings */
+            border-left: 5px solid #1e3a8a;
+            padding-left: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: #1f2937; /* Darker text for headings */
+            font-size: 2.25rem; /* Larger heading size */
+            font-weight: 700;
+        }
+        .card {
+            background-color: white;
+            border-radius: 1rem; /* Slightly more rounded corners */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05); /* Softer, larger shadow */
+            padding: 2rem; /* Increased padding */
+            margin-bottom: 2rem; /* More space between cards */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Subtle lift on hover */
+            box-shadow: 0 15px 20px rgba(0, 0, 0, 0.1);
+        }
+        .header-bg {
+            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%); /* Deeper blue gradient */
+            color: white;
+            padding: 3rem 1.5rem; /* More vertical padding */
+            border-radius: 1rem; /* Match card border-radius */
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .profile-img-container {
+            position: relative;
+            width: 150px; /* Larger image */
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.2); /* Thicker, semi-transparent border */
+            overflow: hidden;
+            box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.1); /* Inner glow effect */
+            display: flex; /* Use flexbox to center content */
+            align-items: center;
+            justify-content: center;
+            /* Removed background and text styles as actual image will be used */
+        }
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image covers the circular area */
+            display: block;
+        }
+        .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Space between icon and text */
+            margin: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.9); /* Slightly muted white for contact info */
+        }
+        .contact-info i {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        /* Style for the mailto link within contact info */
+        .contact-info a {
+            color: inherit; /* Inherit color from parent span */
+            text-decoration: none; /* Remove underline */
+            transition: color 0.2s ease-in-out;
+        }
+        .contact-info a:hover {
+            color: #e0f2fe; /* Lighter color on hover */
+            text-decoration: underline;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            color: #374151; /* Darker gray for list items */
+        }
+        .list-item i {
+            margin-right: 0.75rem;
+            color: #1d4ed8; /* Blue icon color */
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 0.2rem; /* Align icon with text baseline */
+        }
+        .experience-detail {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb; /* Lighter separator */
+        }
+        .experience-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .job-title {
+            font-size: 1.5rem; /* Larger job titles */
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .company-duration {
+            font-size: 1.1rem;
+            color: #3b82f6; /* Blue for company/duration */
+            margin-top: 0.25rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+        .footer {
+            background-color: #374151; /* Dark footer */
+            color: #d1d5db; /* Light gray text */
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+            width: 100%; /* Ensure footer spans full width */
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr 2fr; /* 1/3 and 2/3 column split */
+            }
+            .header-bg {
+                padding: 4rem 2rem;
+            }
+            .section-heading {
+                font-size: 2.25rem; /* Re-affirm desktop size */
+            }
+            .job-title {
+                font-size: 1.5rem; /* Re-affirm desktop size */
+            }
+            .company-duration {
+                font-size: 1.1rem; /* Re-affirm desktop size */
+            }
+        }
+        @media (max-width: 767px) { /* Adjustments for smaller screens (mobile) */
+            .section-heading {
+                font-size: 1.75rem; /* Smaller heading size on mobile */
+                padding-left: 1rem; /* Slightly less padding */
+                margin-bottom: 1rem;
+            }
+            .card {
+                padding: 1.5rem; /* Reduced padding on mobile */
+                margin-bottom: 1.5rem; /* Reduced margin */
+            }
+            .header-bg {
+                padding: 2rem 1rem; /* Reduced padding on mobile header */
+                margin-bottom: 1.5rem;
+            }
+            .profile-img-container {
+                width: 120px; /* Slightly smaller image on mobile */
+                height: 120px;
+                margin-bottom: 1rem;
+            }
+            h1 {
+                font-size: 2.5rem; /* Smaller main title on mobile */
+            }
+            .header-bg p {
+                font-size: 1.1rem; /* Smaller sub-title on mobile */
+            }
+            .contact-info {
+                flex-direction: column; /* Stack contact info vertically on mobile */
+                align-items: center;
+                gap: 0.25rem; /* Smaller gap when stacked */
+            }
+            .contact-info span {
+                margin: 0.25rem 0; /* Adjust vertical margin for stacked items */
+            }
+            .job-title {
+                font-size: 1.25rem; /* Smaller job titles on mobile */
+            }
+            .company-duration {
+                font-size: 1rem; /* Smaller company/duration on mobile */
+            }
+            .text-lg { /* Adjust general text size for mobile */
+                font-size: 1rem;
+            }
+            .list-item {
+                margin-bottom: 0.5rem; /* Reduced space between list items */
+            }
+            .list-item i {
+                margin-top: 0; /* Re-align icon */
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <!-- Header Section -->
+        <header class="header-bg text-center">
+            <div class="profile-img-container">
+                <!-- Innocent Elue's actual profile photo -->
+                <img src="innocent.jpeg" alt="Innocent Elue's Professional Photo">
+            </div>
+            <h1 class="text-4xl sm:text-5xl font-extrabold mb-2 tracking-wide drop-shadow-md">INNOCENT ELUE</h1>
+            <p class="text-xl sm:text-2xl font-light mb-6 opacity-90">APPLYING FOR: EVENT, BANQUET AND CONFERENCE COORDINATOR</p>
+            <div class="contact-info flex flex-wrap justify-center gap-x-6 gap-y-2 text-base sm:text-lg font-light">
+                <span class="flex items-center"><i class="fas fa-phone"></i> +971 7551507189</span>
+                <!-- Linked Yahoo email address -->
+                <span class="flex items-center"><i class="fas fa-envelope"></i> <a href="mailto:elue.innocent@yahoo.com">elue.innocent@yahoo.com</a></span>
+                <span class="flex items-center"><i class="fas fa-map-marker-alt"></i> Wasl 611 Al Wasarn 3, Dubai</span>
+            </div>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-3 gap-8 grid-container">
+            <!-- Left Column (Profile, Skills, Languages, Recognition) -->
+            <div class="md:col-span-1">
+                <!-- Profile Section -->
+                <section class="card">
+                    <h2 class="section-heading">PROFILE</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">Customer-focused Complex Reservation Agent with ability to manage intricate booking requests across multiple hotels. Skilled in handling multi-component reservations, special accommodations, and complex pricing structures with efficiency and accuracy. Excellent at coordinating events, managing teams, and delivering exceptional service to enhance guest and stakeholders' satisfaction.</p>
+                </section>
+
+                <!-- Skills Section -->
+                <section class="card">
+                    <h2 class="section-heading">SKILLS</h2>
+                    <ul class="text-gray-700 text-lg">
+                        <li class="list-item"><i class="fas fa-check-circle"></i> Event/Banquet Management</li>
+                        <li class="list-item"><i class="fas fa-check-circle"></i> Opera, SynSix & Amadeus</li>
+                        <li class="list-item"><i class="fas fa-check-circle"></i> Booking Trends/Hotel Policies</li>
+                        <li class="list-item"><i class="fas fa-check-circle"></i> Cultural Awareness</li>
+                        <li class="list-item"><i class="fas fa-check-circle"></i> Effective Communication</li>
+                        <li class="list-item"><i class="fas fa-check-circle"></i> Data Entry Accuracy</li>
+                        <li class="list-item"><i class="fas fa-check-circle"></i> Adaptability</li>
+                        <li class="list-item"><i class="fas fa-check-circle"></i> Microsoft Office Suites</li>
+                    </ul>
+                </section>
+
+                <!-- Language Section -->
+                <section class="card">
+                    <h2 class="section-heading">LANGUAGE</h2>
+                    <ul class="text-gray-700 text-lg">
+                        <li class="list-item"><i class="fas fa-globe"></i> English (Fluent)</li>
+                        <li class="list-item"><i class="fas fa-globe"></i> French (Basic)</li>
+                    </ul>
+                </section>
+
+                <!-- Recognition Section -->
+                <section class="card">
+                    <h2 class="section-heading">RECOGNITION</h2>
+                    <ul class="text-gray-700 text-lg">
+                        <li class="list-item"><i class="fas fa-award"></i> 4x Winner, Highly Effective Leadership Award</li>
+                        <li class="list-item"><i class="fas fa-award"></i> 3x Winner of Leader of the Quarter Awards</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- Right Column (Work Experience, Training & Certification, Education) -->
+            <div class="md:col-span-2">
+                <!-- Work Experience Section -->
+                <section class="card">
+                    <h2 class="section-heading">WORK EXPERIENCE</h2>
+
+                    <div class="experience-detail">
+                        <h3 class="job-title">Reservation Agent</h3>
+                        <span class="company-duration">Le Meridien Dubai & Conference Centre | 2024-PRESENT</span>
+                        <ul class="text-gray-700 text-lg list-disc list-inside space-y-1">
+                            <li>Entered and updated customer information accurately in the reservation system.</li>
+                            <li>Provided pricing details and generated quotes for products/services.</li>
+                            <li>Processed payments securely, ensuring customer payment information remained confidential.</li>
+                            <li>Responded to customer inquiries via phone, email, and chat, providing prompt and professional assistance.</li>
+                            <li>Explained various products and services, guiding customers in selecting the best options to meet their needs.</li>
+                            <li>Maintained detailed event timelines, budgets, and checklists, ensuring seamless execution.</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-detail">
+                        <h3 class="job-title">Reservation Agent</h3>
+                        <span class="company-duration">ALAIN | 2023-2024</span>
+                        <ul class="text-gray-700 text-lg list-disc list-inside space-y-1">
+                            <li>Successfully resolved customer complaints and issues, ensuring high levels of satisfaction.</li>
+                            <li>Maintained accurate and up-to-date records of reservations, improving operational efficiency.</li>
+                            <li>Managed on-site emergencies effectively, coordinating with security and medical teams for quick responses.</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-detail">
+                        <h3 class="job-title">Assistant Security Manager</h3>
+                        <span class="company-duration">AL AIN | 2022-2023</span>
+                        <ul class="text-gray-700 text-lg list-disc list-inside space-y-1">
+                            <li>Implemented enhanced security protocols, reducing security breaches.</li>
+                            <li>Conducted comprehensive risk assessments, identifying and mitigating potential threats.</li>
+                            <li>Developed standard operating procedures (SOPs) for emergency response, improving reaction time and efficiency.</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-detail">
+                        <h3 class="job-title">Security Supervisor</h3>
+                        <span class="company-duration">Al Jadaf | 2020-2022</span>
+                        <ul class="text-gray-700 text-lg list-disc list-inside space-y-1">
+                            <li>Integrated biometric access systems, reducing unauthorized entry incidents.</li>
+                            <li>Managed real-time security monitoring software, improving threat detection and response efficiency.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Training & Certification Section -->
+                <section class="card">
+                    <h2 class="section-heading">TRAINING & CERTIFICATION</h2>
+                    <ul class="text-gray-700 text-lg">
+                        <li class="list-item"><i class="fas fa-certificate"></i> Marriott Careers Program - Interdepartmental training on Mgt. Level | 2021</li>
+                        <li class="list-item"><i class="fas fa-certificate"></i> Training the Trainer Course (TOPPs) - Marriott Internal training | 2020</li>
+                    </ul>
+                </section>
+
+                <!-- Education Section -->
+                <section class="card">
+                    <h2 class="section-heading">EDUCATION</h2>
+                    <ul class="text-gray-700 text-lg">
+                        <li class="list-item"><i class="fas fa-graduation-cap"></i> PGD in International Administration, Geneva Business School | 2019-2022</li>
+                        <li class="list-item"><i class="fas fa-graduation-cap"></i> Diploma in Accountancy, Delta State Polytechnic, Ozoro | 2012-2014</li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer Section -->
+        <footer class="footer">
+            <p>Made by Qusai Masarweh</p>
+            <p class="mt-2">
+                <a href="https://github.com/qmasarweh" target="_blank" class="text-blue-300 hover:text-blue-100 transition-colors duration-200">
+                    <i class="fab fa-github mr-2"></i>View on GitHub
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // No specific JavaScript functionality is needed for this static CV website.
+        // However, this is where you would add any interactive elements if desired,
+        // such as smooth scrolling for navigation or a simple contact form validation.
+    </script>
+</body>
+</html>
